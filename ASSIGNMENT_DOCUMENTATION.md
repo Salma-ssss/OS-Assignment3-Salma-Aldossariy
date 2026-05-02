@@ -1,8 +1,8 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
-**Date Submitted**: [Submission Date]
+**Student Name**: [Salma Aldossariy]  
+**Student ID**: [445052168]  
+**Date Submitted**: [2026/5/3]
 
 ---
 
@@ -16,7 +16,7 @@
 
 **Video Link**: [Paste your personal Gmail Google Drive link here]
 
-**Video filename**: `[YourStudentID]_Assignment3_Synchronization.mp4`
+**Video filename**: `[445052168]_Assignment3_Synchronization.mp4`
 
 **Verification**:
 - [ ] Link is accessible (tested in incognito mode)
@@ -31,68 +31,68 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - [May 3, 2026, 6:00 AM]
 **What I implemented**: 
-
+I started by understanding the assignment requirements and analyzing the provided code. I identified shared resources such as contextSwitchCount, completedProcessCount, totalWaiting Time, and executionLog
 **Challenges encountered**: 
-
+it was initially difficult to identify where race conditions might occur
 **How I solved it**: 
-
+I reviewed Chapters 3,5 from Operating System Concepts and focused on critical sections
 **Testing approach**: 
-
-**Time spent**: 
+I ran the program without synchronization and observed behavior
+**Time spent**: 1 hour
 
 ---
 
-### Entry 2 - [Date, Time]
+### Entry 2 - [May 3, 2026, 8:00 AM]
 **What I implemented**: 
-
+implemented ReentrantLock to protect shared counters
 **Challenges encountered**: 
-
+Understanding where to place lock() and unlock() correctly
 **How I solved it**: 
-
+used try-finally to guarantee unlocking
 **Testing approach**: 
-
-**Time spent**: 
+tested multiple runs and verified counters were consistent
+**Time spent**: 2 hours
 
 ---
 
-### Entry 3 - [Date, Time]
+### Entry 3 - [May 3, 2026, 10:00 AM]
 **What I implemented**: 
-
+I added synchronization for executionLog
 **Challenges encountered**: 
-
+Understanding why ArrayList is not thread-safe
 **How I solved it**: 
-
+Protected it using the same lock
 **Testing approach**: 
-
-**Time spent**: 
+Ensured no ConcurrentModificationException occurs
+**Time spent**: 1 hour
 
 ---
 
-### Entry 4 - [Date, Time]
+### Entry 4 - [May 3, 2026, 11:00 AM]
 **What I implemented**: 
-
+added a semaphore to control CPU access
 **Challenges encountered**: 
-
+Understanding how a semaphore differs from a lock
 **How I solved it**: 
-
+used a binary semaphore (1 permit)
 **Testing approach**: 
-
-**Time spent**: 
+Verified: Only one process executes at a time
+**Time spent**: 2 hours
 
 ---
 
-### Entry 5 - [Date, Time]
+### Entry 5 - [May 3, 2026, 1:00 PM]
 **What I implemented**: 
-
+Final testing and validation
 **Challenges encountered**: 
-
+Ensuring consistent output across runs
 **How I solved it**: 
-
+Repeated execution multiple times
 **Testing approach**: 
-
-**Time spent**: 
+Compared outputs and verified correctness
+**Time spent**: 3 hours
 
 ---
 
