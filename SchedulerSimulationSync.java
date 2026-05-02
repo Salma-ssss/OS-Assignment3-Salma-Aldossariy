@@ -25,6 +25,7 @@ class Colors {
     public static final String BRIGHT_CYAN = "\u001B[96m";
     public static final String BRIGHT_YELLOW = "\u001B[93m";
     public static final String BRIGHT_GREEN = "\u001B[92m";
+
 }
 
 // ⚠️ SHARED RESOURCES - These need synchronization! ⚠️
@@ -89,7 +90,13 @@ class SharedResources {
     public static void logExecution(String message) {
         // TODO: Protect this critical section with a lock
         // RACE CONDITION: ArrayList is not thread-safe!
-        executionLog.add(message);
+        // Added synchronization executionLog
+        lock.lock();
+        try {
+            executionLog.add(message);
+        } finally {
+            lock.unlock();
+        }
     }
 }
 
