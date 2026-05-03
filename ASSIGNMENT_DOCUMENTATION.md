@@ -161,52 +161,66 @@ However, given the simplicity of the assignment and the small number of shared v
 ### Critical Section #1: Counter Variables
 
 **Which variables**: 
-
+contextSwitchCount, completedProcessCount, totalWaiting Time
 **Why they need protection**: 
-
+They are shared among multiple threads and updated concurrently
 **Synchronization mechanism used**: 
-
+ReentrantLock
 **Code snippet**:
 ```java
 // Paste your implementation here
+lock.lock();
+try { 
+    contextSwitchCount++; 
+} finally { 
+   lock.unlock();
+}
 ```
-
 **Justification**: 
-
+Ensures mutual exclusion and prevents race conditions
 ---
 
 ### Critical Section #2: Execution Log
 
 **What resource**: 
-
+executionLog (ArrayList)
 **Why it needs protection**: 
-
+ArrayList is not thread-safe
 **Synchronization mechanism used**: 
-
+v
 **Code snippet**:
 ```java
 // Paste your implementation here
+lock.lock();
+try{
+executionLog.add(message);
+} finally {
+lock.unlock();
+}
 ```
 
 **Justification**: 
-
+Prevents data corruption and exceptions
 ---
 
 ### Critical Section #3: CPU Semaphore
 
 **Purpose of semaphore**: 
-
+Control CPU access
 **Number of permits and why**: 
-
+(simulate single CPU) 1
 **Where implemented**: 
-
+Inside run() method
 **Code snippet**:
 ```java
 // Paste your implementation here
+SharedResources.cpuSemaphore.acquire();
+...
+SharedResources.cpuSemaphore.release();
 ```
 
 **Effect on program behavior**: 
-
+Ensures only one process executes at a time
 ---
 
 ## Part 4: Testing and Verification (2 marks)
