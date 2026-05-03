@@ -231,49 +231,100 @@ Ensures only one process executes at a time
 **Testing procedure**: 
 ```bash
 # Commands used (run the program at least 5 times)
+# Compile the progress
+Java Schedulersimulationsync.java
+
+# Run the program multiple times (at least 5 times)
+Java SchedulersimulationSync
+Java Schedulersimulationsync
+Java SchedulerSimulationSync
+Java SchedulersimulationSync
+Java SchedulersimulationSync
 ```
 
 **Results**: 
 (Show that running multiple times produces consistent, correct results)
+Total Context Switches: 35
+Total Completed Processes: 18
+Total Waiting Time: 1264760ms
+Average Waiting Time: 70264ms
+
+═══ Process Summary Table ═══
+Process    Priority     Burst Time   Waiting Time
+────────────────────────────────────────────────
+P1         1            3234         20          
+P2         1            3119         3253        
+P3         3            8092         99157       
+P4         1            9966         99258       
+P5         3            3653         14516       
+P6         4            7817         72751       
+P7         2            9473         101235      
+P8         5            5405         80668       
+P9         4            3940         30414       
+P10        3            9883         102714      
+P11        5            6747         86136       
+P12        5            7202         88919       
+P13        3            2030         46506       
+P14        4            5315         92132       
+P15        2            3812         52622       
+P16        4            6941         93455       
+P17        3            6670         96403       
+P18        2            9236         104601      
+
+═══ Execution Log Summary ═══
+Total log entries: 70
 
 **Why synchronization is necessary**: 
 (Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+Without synchronization, race conditions could occur in shared variables such as contextSwitchCount, completedProcessCount, and totalWaitingTime. For example, multiple threads incrementing contextSwitchCount simultaneously could result in lost updates, producing incorrect values. Similarly, concurrent access to executionLog (ArrayList) could cause data corruption or runtime exceptions. Synchronization ensures mutual exclusion, meaning only one thread can modify shared resources at a time, thus preserving data integrity
 
 **Conclusion**: 
-
+The consistent results across multiple executions confirm that synchronization mechanisms (ReentrantLock Land Semaphore) were correctly implemented and effectively eliminated race conditions
 ---
 
 ### Test 2: Exception Testing
 **What I tested**: Checking for ConcurrentModificationException
 
 **Testing procedure**: 
+executed the program multiple times while focusing on operations involving the shared executionLog list.
 
+Since multiple threads attempt to write to this list, it is a potential source of concurrency issues. I verified whether any runtime exceptions occurred during execution
 **Results**: 
-
+No ConcurrentModificationException or any other runtime exception was observed during any execution
+of the program
 **What this proves**: 
-
+This confirms that the executionLog is properly synchronized using ReentrantLock. The lock ensures that only one thread modifies the list at a time, preventing concurrent modification issues and maintaining data 
+.consistency
 ---
 
 ### Test 3: Correctness Verification
-**What I tested**: Verifying correct final values (total burst time, context switches, etc.)
-
+**What I tested**: 
+Verifying that the final computed values ​​(such as total context switches, completed processes, and waiting time) are correct and logically consistent.
 **Expected values**: 
-
+-The number of completed processes should equal the total number of created processes
+-Context switches should reflect the number of scheduling operations
+-Total waiting time should be positive and reasonable
+-Average waiting time should be correctly calculated
 **Actual values**: 
-
+Total Context Switches: 35
+Total Completed Processes: 18
+Total Waiting Time: 1264760ms
+Average Waiting Time: 70264ms
 **Analysis**: 
-
+The actual values ​​match the expected behavior of a Round Robin scheduler. All processes were completed successfully, and no incorrect values ​​were observed. The statistics are consistent with the execution flow, confirming that synchronization did not interfere with correctness but instead ensured accurate computation
 ---
 
 ### Test 4: Different Scenarios
 **Scenario tested**: [e.g., different time quantum, more processes, etc.]
+Running the program with different randomly generated values ​​for time quantum and number of processes
+(based on different student IDs)
 
 **Purpose**: 
-
+To verify that the synchronization mechanisms work correctly under different workloads and execution conditions
 **Results**: 
-
+program behaved correctly in all scenarios. Regardless of the number of processes or time quantum, the output remained consistent and no race conditions or errors occurred
 **What I learned**: 
-
+Synchronization mechanisms such as locks and semaphores ensure stability and correctness regardless of system load. This demonstrates their importance in real-world concurrent systems
 ---
 
 ## Part 5: Reflection and Learning
