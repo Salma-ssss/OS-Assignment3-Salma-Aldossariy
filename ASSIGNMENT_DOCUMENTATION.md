@@ -332,7 +332,7 @@ Synchronization mechanisms such as locks and semaphores ensure stability and cor
 ### What I learned about synchronization:
 
 [6-8 sentences about key concepts, challenges, insights]
-
+Through this assignment, I learned the importance of synchronization in multi-threaded systems. I understood how race conditions occur when multiple threads access shared resources without proper coordination. I also learned how ReentrantLock provides mutual exclusion, ensuring only one thread accesses a critical section at a time. Additionally, I gained practical experience using semaphores to control access to limited resources such as the CPU. One key insight was the importance of using try-finally blocks to avoid deadlocks by ensuring locks are always released. I also realized that even simple operations like incrementing a variable can cause serious issues in concurrent environments. Overall, this assignment strengthened my understanding of concurrency control and thread safety
 ---
 
 ### Real-world applications:
@@ -340,15 +340,16 @@ Synchronization mechanisms such as locks and semaphores ensure stability and cor
 Give TWO examples where synchronization is critical:
 
 **Example 1**: 
-
+Banking systems, where multiple transactions update the same account balance. Without synchronization, incorrect balances could occur.
 **Example 2**: 
-
+Operating systems CPU scheduling, where multiple processes compete for CPU access. Synchronization
+ensures fair and correct execution
 ---
 
 ### How I would explain synchronization to others:
 
 [Explain to someone who just finished Assignment 1 - use simple terms and analogies]
-
+Synchronization can be explained as a way to organize access to shared resources. Imagine multiple people trying to write on the same whiteboard at the same time. Without coordination, the result will be messy and incorrect. A lock acts like giving only one person access to the whiteboard at a time. A semaphore is like limiting how many people can enter a room. In programming, synchronization ensures that threads do not interfere with each other and that shared data remains correct
 ---
 
 ## Part 6: GitHub Repository Information
